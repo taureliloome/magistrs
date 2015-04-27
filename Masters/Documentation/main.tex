@@ -1,0 +1,294 @@
+\documentclass[12pt]{report}
+\usepackage{graphicx}
+\usepackage{polyglossia}
+\usepackage{mathtools}
+\usepackage{todonotes}
+\usepackage{url}
+\usepackage{amsmath}
+\usepackage{xltxtra}
+\usepackage{float}
+\usepackage{setspace}
+\usepackage[top=20mm, left=30mm, bottom=20mm, right=20mm]{geometry}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{multicol}
+\usepackage{color}
+\usepackage{etoolbox}
+\usepackage{lastpage}
+\usepackage{totcount}
+\usepackage{titlesec}
+\usepackage{blindtext}
+\usepackage{indentfirst}
+\usepackage{subcaption}
+\usepackage[font=small]{caption}
+\usepackage[titletoc,title]{appendix}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\setlength{\parindent}{1cm}
+\linespread{1.3}%It is 1,5 spacing in Word
+
+
+
+    
+\lstset{frame=tb,
+  language=C,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\scriptsize\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=2
+}
+
+
+%For Figure exact  placement with tag H
+\usepackage[
+bookmarks=true,
+colorlinks=true,
+linkcolor=black,
+urlcolor=black,
+citecolor=black,
+hyperindex=false,
+hyperfootnotes=false
+%meta tagi pdfaa
+pdftitle={Bakalaura darbs},
+pdfsubject={Atmiņas izmetes datu shēmu pielietošana atkļūdošanas metodes izstrādei},
+pdfauthor={Renata Januškeviča},
+pdfkeywords={},
+]{hyperref}
+
+\graphicspath{{./figures/}}
+
+\setdefaultlanguage{latvian}
+\setotherlanguages{english,russian}
+%\setmainfont{Times New Roman}
+\usepackage{fixlatvian}
+\newcounter{totfigures}
+\newcounter{tottables}
+
+\providecommand\totfig{} 
+\providecommand\tottab{}
+
+\makeatletter
+\AtEndDocument{%
+  \addtocounter{totfigures}{\value{figure}}%
+  \addtocounter{tottables}{\value{table}}%
+  \immediate\write\@mainaux{%
+    \string\gdef\string\totfig{\number\value{totfigures}}%
+    \string\gdef\string\tottab{\number\value{tottables}}%
+  }%
+}
+
+
+
+\pretocmd{\chapter}{\addtocounter{totfigures}{\value{figure}}\setcounter{figure}{0}}{}{}
+\pretocmd{\chapter}{\addtocounter{tottables}{\value{table}}\setcounter{table}{0}}{}{}
+\renewcommand{\thefigure}{\emph{\arabic{chapter}.\arabic{figure}}}
+\renewcommand{\thetable}{\emph{\arabic{chapter}.\arabic{table}}}
+\renewcommand\p@figure{\thechapter\arabic{figure}\expandafter\@gobble}
+\renewcommand\p@table{\thechapter\arabic{table}\expandafter\@gobble}
+\newtotcounter{citenum}
+\def\oldcite{}
+\let\oldcite=\bibcite
+\def\bibcite{\stepcounter{citenum}\oldcite}
+
+
+% Nodalas, sadaļas
+\titleformat{\chapter}
+   {\large\filcenter}{\thechapter}{1em}{\MakeUppercase}
+\titlespacing*{\chapter}{0pt}{10pt}{10pt}
+\titleformat{\section}
+   {\large\bfseries}{\thesection}{1em}{}
+\titlespacing*{\section}{0pt}{10pt}{10pt}
+
+% Saturs
+\usepackage{tocloft}
+\renewcommand{\cftchapfont}{\normalfont}
+\renewcommand{\cftchappagefont}{\normalfont}
+\renewcommand{\cftdotsep}{1}
+\renewcommand{\cftchapleader}{\upshape\cftdotfill{\cftdotsep}}
+\setlength{\cftbeforesecskip}{8pt}
+\setlength\cftbeforechapskip{8pt}
+\setlength{\cftbeforesubsecskip}{8pt}
+\renewcommand{\cftchapaftersnum}{\vspace{0pt}} 
+\addtocontents{toc}{\linespread{0}\selectfont} 
+\renewcommand{\cfttoctitlefont}{\large\hfil\MakeUppercase}
+\setlength{\cftaftertoctitleskip}{10pt}
+\setlength{\cftbeforetoctitleskip}{15pt}
+\cftsetindents{section}{1cm}{1cm}
+
+% Nodalu numerācija ar punktu
+\renewcommand{\thechapter}{\arabic{chapter}.}
+\renewcommand{\thesection}{\thechapter\arabic{section}.}
+\renewcommand\thesubsection{\thesection\arabic{subsection}}
+\renewcommand\thesubsubsection{\thesubsection\arabic{subsubsection}.}
+\renewcommand\theparagraph{\thesubsubsection\arabic{paragraph}.}
+\renewcommand\thesubparagraph{\theparagraph\arabic{subparagraph}.}
+\renewcommand{\p@chapter}{\arabic{chapter}\expandafter\@gobble} 
+\renewcommand{\p@section}{\arabic{chapter}.\arabic{section}\expandafter\@gobble} 
+
+% Saraksts
+\newlength{\wideitemsep}
+\setlength{\wideitemsep}{.5\itemsep}
+\addtolength{\wideitemsep}{-7pt}
+\let\olditem\item
+\renewcommand{\item}{\setlength{\itemsep}{\wideitemsep}\olditem}
+
+
+% Global definitions
+\include{global}
+
+% Tabula
+\DeclareCaptionLabelSeparator{period1@}{\@\space}
+\captionsetup[table]{justification=raggedleft,singlelinecheck=off,labelsep=period1@}
+
+
+
+% Kods
+\definecolor{lbcolor}{rgb}{0.95,0.95,0.95}
+
+
+\lstdefinestyle{ANSI}{language=C}
+\lstdefinestyle{C++}{alsolanguage=C++}
+\lstdefinestyle{customc}{
+  backgroundcolor=\color{lbcolor},
+  belowcaptionskip=2\baselineskip,
+  breaklines=true,
+  prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+  frame=none,
+  xleftmargin=\parindent,
+  language=C,
+  showstringspaces=false,
+  basicstyle=\footnotesize\ttfamily,
+  xleftmargin=0.1cm,
+  frame=tlbr,
+  framesep=4pt,
+  framerule=0pt,
+  keywordstyle=\bfseries\color{green!40!black},
+  commentstyle=\itshape\color{lightgray!40!black},
+  identifierstyle=\color{blue},
+  stringstyle=\color{orange},
+  numbers=left,
+	numberstyle=\color{gray}\footnotesize,
+    captionpos=t,
+    escapeinside={\%*}{*)}
+}
+
+\lstdefinestyle{customgdb}{
+  belowcaptionskip=2\baselineskip,
+  frame=none,
+  keywordstyle=\bfseries\color{black!40!black},
+  identifierstyle=\ttfamily,
+  xleftmargin=\parindent,
+  basicstyle=\footnotesize\ttfamily,
+  xleftmargin=0.1cm,
+  frame=tlbr,
+  framesep=4pt,
+  framerule=0pt,
+  commentstyle=\itshape\color{purple!40!black}
+}
+\lstset{escapechar=@,style=customc}
+
+% latviešu simboli kodā
+
+\lstset{extendedchars}
+
+\begingroup
+  \catcode0=12 %
+  \makeatletter
+  \g@addto@macro\lst@DefEC{%
+    \lst@CCECUse\lst@ProcessLetter
+    āĀčČēĒģĢīĪķĶļĻņŅšŠūŪžŽ% *** add Unicode characters ***
+    ^^00% end marker
+  }%
+\endgroup
+
+\newcommand\specialsection{%
+  %\titleformat*{\chapter}{\MakeLowercase}{\fontsize{11}{12}}
+  %\titleformat*{\chapter}{\large\filcenter}{\thechapter}{1em}{\MakeUppercase} \raggedleft
+  \titleformat{\chapter}
+   {\fontsize{12}{12}}{\thechapter}{1em}{\raggedleft}
+\titlespacing*{\chapter}{0pt}{10pt}{10pt}
+}
+
+\begin{document}
+\include{nosaukums}
+%\setcounter{tocdepth}{1}
+\setcounter{secnumdepth}{-1}
+\input{anotacija}
+\clearpage
+
+\cleardoublepage
+\pagenumbering{gobble}
+\tableofcontents
+\cleardoublepage
+\pagenumbering{arabic}
+%\addtocontents{toc}{\protect\thispagestyle{empty}}
+
+\setcounter{page}{1}
+
+\setcounter{secnumdepth}{-1}
+\chapter{Apzīmējumu saraksts}
+\input{saisinajumi}
+
+
+\setcounter{secnumdepth}{-1}
+\chapter{Ievads}
+\input{ievads}
+
+\setcounter{secnumdepth}{2}
+\setcounter{chapter}{0}
+
+\chapter{\@nodone}\label{chap:chapter_1} 
+\input{nodala_1}
+\chapter{\@nodtwo}\label{chap:chapter_2}
+\input{nodala_2}
+
+\chapter{\@nodthree}\label{chap:chapter_3}
+\input{nodala_3}
+
+\chapter{\@nodfour}\label{chap:chapter_4}
+\input{nodala_4}
+
+\chapter{\@nodfive}\label{chap:chapter_5}
+\input{nodala_5}
+
+\setcounter{secnumdepth}{-1}
+\chapter{\@nodsix} \label{chap:Secinajumi}
+\input{secinajumi}
+
+\chapter{Pateicības} \label{chap:pateicibas}
+\input{pateicibas}
+
+%Izmantotā literatūra un avoti 
+\nocite{SySML}
+
+\bibliographystyle{IEEEtran}
+\bibliography{biblio}
+\addcontentsline{toc}{chapter}{Izmantotā literatūra un avoti}
+
+
+\setcounter{secnumdepth}{-1}
+\newpage
+\begingroup
+\renewcommand{\cleardoublepage}{}
+\renewcommand{\clearpage}{}
+
+\chapter{Pielikumi}
+\specialsection
+\input{pielikumi}
+\endgroup
+
+
+
+\include{dokument_lapa}
+\end{document}
