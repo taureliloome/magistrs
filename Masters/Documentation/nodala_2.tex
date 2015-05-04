@@ -1,2 +1,76 @@
-\section{Apakšnodaļa}
-\subsection{pakāpes nodaļa}
+Dotajā nodaļā ir apkopotas līdzīgas problēmas, kā arī daži risinājumi no citiem autoriem. Šīs nodaļas nepieciešamība ir nepieciešama, lai parādītu kā viena virziena idejas var izmantot citā. Kas ir diezgan svarīgi lielās bildes gadījumā - ja netiek ņemtas vērā dotā darba robežas. Jāpatur prātā, ka izveidotajam risinājumam ir jābūt spējīgam augt, viņš nevar būt specifisks tikai vienam gadījumam
+
+\section{Pirmkoda ģenerēšana pēc pieprasījuma}
+Kā jau pieminēts, šī ir diezgan veca iekāre datorikas zinātnē. Taču pat pēc vairākiem gadu desmitiem pilnvērtīgi šī problēma netika atrisināta. Tam par iemeslu ir šī uzdevuma sarežģītuma dziļums. Autors arī nesola pilnīgi atrisināt šo problēmu. Taču apskatīt citu autoru darbus šai virzienā pēdējos gados ir vērts, lai iegūtu informāciju no viņu darbiem.
+
+\subsection{Veidņu bāzēta pirmkoda ģenerēšana}
+Ļoti izplatīts šī uzdevuma risināšanas veids ir bāzēts uz veidnēm. Piemēram, izmantojot UML diagrammas, lai slāni pēc slāņa arvien dziļāk aprakstītu loģiku kādai programmai. Šeit uzreiz var redzēt arī šīs metodes trūkumus - katrai jaunai programmatūrai ir jāiegulda daudz laika, lai uzprojektētu risinājumu. 
+
+Liels slogs ir noņemts nost no tieši programmēšanas daļas. Lielākoties visi saskarsmes punkti, metožu nosaukumi, informācijas plūsmas un procesi būtu jau definēti. Pie reizes tiktu arī izveidota kaut cik sakarīga bilde par procesiem.
+
+Šādus rīkus piedāvā arī tāds industrijas milzis kā IBM, kurš ir ieguldījis lielas naudas summas iegādājoties Rational Software 2000 gadā (TODO atsauce uz wiki?).
+Citi šādi rīki ir diezgan vienkārši atrodami globālajā tīmeklī. Lūk saraksts ar dažiem:
+\begin{itemize}
+\item (jau pieminētais) IBM Rational Software
+\item StarUML
+\item Visual Paradigm
+\item Altova
+\item Enterprise Architect
+\item u.c.
+\end{itemize}
+Saites uz šo rīku mājaslapām ir atrodamas TODO pielikumā.
+
+Jāpiemin arī, ka šie rīki atbalsta arī populārākās programmēšanas vides, tādas kā Visual Studio un Eclipse. Kā arī tie ir diezgan plaši izmantoti industrijā, attiecīgi tie nav vienkārši teorētiski mēģinājumi ar potenciālu, bet reāli izmantoti risinājumi. Tie resursi, kurus dotajā virzienā iegulda lielie IT sfēras spēlētāji ir diezgan pamatīgi un, noteikti(!), vērā ņemami.
+
+Savukārt zinātnes līmenī dažādi raksti un pētījumi arī tiek publicēti. TODO a better transition to next subsection
+\subsection{Pirmkoda ģenerēšana un izpildīšana pēc pieprasījuma}
+Tieši šāds ir virsraksts vienam autora apskatītam darbam. Ideja kura tiek risināta ir diezgan tuva dotā darba vienam no mērķiem - proti, pirmkoda ģenerēšana balstoties uz veidnēm.
+
+Šajā rakstā tiek aprakstīts risinājums, kurā par pamatu tiek izmantotas 3 komponentes - specifikācija, konfigurācija un veidne. Katra veidne var būt sadalītā smalkākā tāda paša komponenšu kopā. Tādā veidā ar vien smalkāk aprakstot darbības. Ja kādai no veidnēm ir nepieciešami ievad-argumenti, tad tie tiek pieprasīti no lietotāja. Šāda darbība ir iespējama, jo autori izmanto skriptu valodas - Python un javascript. Šīs programmēšanas valodas piedāvā iespēju "pārbaudīt" (to evaluate) katru nākošo veidni programmas izpildes laikā. Tradicionālām valodām ar šo būtu sarežģītības.
+
+\subsection{Skriptu valodas un pirmkoda ģenerēšana}
+Viena no tendencēm ir skriptu valodu izmantošana līdzīgos risinājumos. Tādas valodas parasti nav tik sintaktiski stingras un dod lielāku plašumu lietotājam. Piemēram, abstraktie mainīgo tipi dod lielu brīvību, salīdzinot ar klasiskām valodām, kur mainīgais nevar mainīt savu tipu izpildes laikā. 
+
+Apskatoties mūsdienu tīmekļa vietnes, var atrast tādas, kuras lietotājam piedāvā pašam „uzzimēt” nepieciešamo mājaslapu izmatojot tiešsaistē pieejamos rīkus. Tālāk skriptu valodas kā Javascript un Python vai PHP sāk strādāt. Lietotāja ievadu pārveido par tiešo HTML pirmkodu un saglabā vietnes uzturētāja konfigurētā vietā.
+
+Attiecīgi, izmantojot zināmus būv-blokus un piedāvājot interaktīvu saskarni rastu lietotājam iespēju radīt vajadzīgo programmatūru (vai tīmekļa lapu), bet dziļām zināšanām par tiem procesiem un programmēšanas valodām, kuras tiek izmantotas, lai to visu nodrošināt. Dotajā gadījumā vēlāk būtu iespējams papildināt, uzlabot, attīstīt uzģenerēto pirmkodu, piemēram izveidotā mājaslapā ielikt sev vajadzīgos rakstus vai citu informāciju. 
+
+\section{Algoritmu atpazīšana}
+Algoritmu atpazīšanas problēma arī nav nekas jaunus. Pētniecība šai virziena ir ar dažādām motivācijām. Viena no lielākām ir plaģiātu atrašana. Cita sfēra ir saistīta ar testēšanu
+
+\subsection{Algoritmu salīdzināšana, plaģiāta noteikšana}
+Viena no ierastām algoritmu salīdzināšanas veidiem ir to apstrāde uz pamata struktūrām, atsakoties no mainīgo vārdiem. Vēlāk šī virkne ar simboliem tiek salīdzināta ar tādā pašā viedā apstrādāto oriģinālu. Sakritību punkti var būt pārskatīti manuāli un tad jau pieņem gala lēmumu.
+
+
+\subsection{APTS}
+Noteikti lielākā daļa Latvijas Universitātes Datorikas Fakultātes mācību spēku ir vismaz dzirdējuši par prof. Arnicāna izveidotu sistēmu bakalaura studiju studentiem. Šī sistēma faktiski nodarbojas ar melnās kastes testēšanu. Tajā pašā laikā tā ievāc datus par izpildes laiku. 
+
+Šī programmatūra ļoti sekmīgi izpilda testēšanas uzdevumus. Grafiski uzskatāmi attēlo rezultātus. Var veikt interesantas paralēles starp dažādu studentu darbu līdzīgiem rezultātiem. Kā arī publiski pieejamo testu ietekme uz kopējo bildi.
+[TODO validate with Arnicāns]
+
+\subsection{Induktīvā metode}
+[TODO contact Bārzdiņš about this or throw it out!]
+
+\section{Mašīnmācīšanās}
+Šeit laikam sākumā ir jāizveido atkāpe un īsi, bet saprotami jāizstāsta par mašīnmācīšanās metodi. 
+
+Citējot Toma Mitčēla definīciju: "Datora programma ir spējīga mācīties no pieredzes E attiecība uz tādas pašas klases uzdevumiem T un vērtēšanas kritērijiem P, tā uzlabo savu pieredzi ar E"
+[TODO remove the original? + better translation!]
+"A computer program is said to learn from experience E with respect to some class of tasks T and performance measure P, if its performance at tasks in T, as measured by P, improves with experience E" 
+
+\subsection{Neironu tīkli}
+[TODO add pictures]
+Ir vairāki veidi kā var realizēt šo ideju. Dotajā darbā tiks izmantots neironu tīkls.
+
+Neironu tīkls sastāv no perseptronu kopas. Katrs perseptrons izpilda kaut kādu darbību h, jeb hipotēzi ar ienākošiem mainīgiem v1 ... vn un dod rezultātu w. Savienojumos starp perseptroniem, pirms rezultāts tiek padots nākošajam, atrodas svari, kuri nosaka cik svarīgs šis rezultāts ir tam sekojošam perseptronam attiecībā pret visiem pārējiem ienākošiem datiem. Katrs no perseptroniem balstoties uz iegūto rezultātu aktivizēs nākošo perseptronu virknē. Tādā veidā sākuma iedotie dati tiek izdzīti caur visam tīklam. Gala rezultātu vērtība ir e, jeb iegūtā pieredze attiecībā uz dotiem datiem.
+
+Treniņa laikā svari tiek peilāgoti, lai pēc iespējas tuvāk pieskaņotu e, jeb iegūto rezultātu attiecība pret zināmu vērtību šiem datiem. Šeit ir jābūt ļoti uzmanīgam. Jo smagāk kādi atsevišķi ņemti ieejas dati ietekmēja svaru pielāgošanu, jo mazāk ticams, ka tie reālas darbības laikā dos ticamus rezultātus. Tie izskatīsies pareizi, bet mašīna dara to, kas viņai tika iemācīts.
+
+Gala rezultātā tiktu iegūts kaut kāds grafiks ar tendenci attiecībā pret visiem pamanītiem datiem. Šādā veidā varētu paredzēt nākotnē kas notiks ar līdzīga tipa datiem. Šīs metodes plaši tiek izmantotas statistikā un ekonomikā. Cilvēki vairs nerēķina paši cik daudz naudas viņi varētu nopelnīt un nemēģina paredzēt visādas ietekmes. Viņu vietā to dara trenētas mašīnas, kuras tika iemācītas balstoties uz jau eksistējošiem datiem.
+
+\section{Sejas atpazīšana}
+[TODO is this relevant?]
+Šī problēma ir pieminēta jo tajā bieži tiek izmantota mašīnmācīšanās. Uzdevums arī ir savā ziņā līdzīgs - salīdzināt vairākas datu grupas un noteikt to savstarpējo tuvību balstoties uz izveidotiem algoritmiem un iepriekšējiem treniņiem.
+
+Atkal sākumā programma tiek trenēta. Attiecīgi uzsākot darbu tiek atrasti sejas punkti, kuri veidotu tādu kā grafu. Šis noteikti ir redzēts dažādās filmās. Tālāk mašīna zinot kā atpazīt šos punktus sāk pārbaudīt to punktu attiecības koordināšu plaknē. Faktiski tā ir 2 dimensijās redzamā pārveidošana par 3 dimensiju attēlu un mēģinājums noteikt vai ir kāds leņķis pie kura šie punkti varētu sakrist.
+

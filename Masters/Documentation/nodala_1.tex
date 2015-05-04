@@ -1,2 +1,93 @@
-\section{Apakšnodaļa}
-\subsection{pakāpes nodaļa}
+Šīs nodaļas uzdevums ir definēt maģistra darba mērķi; Izveidot lielāku priekšstatu par to. Attiecīgi - nodaļas sākuma daļa dod plašāku izklājumu par paredzamo procesu. Turpinājumā tiek uzskaitīti visi mērķi, kurus autors cenšas panākt. Mērķi arī ir smalkāk aprakstīti, kā arī to potenciālās problēmas. Nodaļas beigu daļā tiek definētas risinājuma robežas.
+
+\section{Paredzamā procesa apraksts}
+Pirmais scenārijs. Uzprogrammētais risinājums saņemtu no ārpuses (lietotāja) ievaddatus. Šie dati varētu būt gan kā pirmkods, gan kā izpildāma datne - .exe vai .dll. Šie ievaddati tiktu apstrādāti, sagatavoti un izlaisti cauri neironu tīklam. Tādā veidā tiktu iegūtu rezultāti par to, kurš no visiem algoritmiem tas, visticamāk, ir. 
+
+Nākošais solis, ja tas ir iespējams - pirmkoda formatēšana un sadalīšana atsevišķos koda blokos. Turpmāk šie bloki tiek saglabāti speciālā kartotēkā. Kā arī tiek saglabāts to salikuma oriģinālais variants. Šis tiek darīts, lai vēlāk varētu salīdzināt dažādus risinājumus vienādiem algoritmiem, kā arī būtu iespēja atpazīt vienādos darbus. Grūtākā sastāvdaļa ir sākotnējā algoritma sakārtošana.
+
+Papildus pie pirmkoda analīzes tiek arī piedāvāti kopējie rezultāti par doto algoritmu. Programmatūras minējums, kurš no visiem kārtošanas algoritmiem šis varētu būt. 
+
+Otrais scenārijs. Risinājums saņemtu no ārpuses (lietotāja) ievaddatus. Šie dati būtu pieprasījums pēc konkrēta pirmkoda parauga. Risinājums salīdzinātu iepriekšējos šāda pieprasījuma veida rezultātus ar vislabāk saderošo algoritmu. Vēlāk apskatītos, vai ir jau gatavie salikuma varianti šim algoritmam. Ja tādu nav, tad tiktu veikta visu iespējamo variantu pārlase. Šai brīdī vajadzētu notikt trenēšanai, lai iemācītu risinājumu, kādiem rezultātiem aptuveni būtu jābūt. Šai procesā, tieši rezultātu iegūšanai, tiek izmantots tas pats neironu tīkls ar kuru tiek atpazīti citi algoritmi.
+
+Šajos procesos ir ļoti daudz neatbildētu jautājumu. Katrs no etapiem ir pa savam specifisks un prasīs individuālus, kā arī oriģinālus risinājums no autora. Sākumā gan ir jādefinē konkrēti ko mēģina panākt ar šo darbu un kādi ir tā mērķi, kā arī robežas.
+
+\section{Darba mērķi}
+Virspusēji apskatot iepriekšējā nodaļā doto aprakstu var saprast, ka mērķis ir izveidot programmatūru, kura kaut ko dara ar lietotāju piedāvāto pirmkodu vai izpildāmām datnēm. Fokusējot uzmanību tiek iegūti vairāki mērķi.
+
+Īsumā tie ir: 
+\begin{itemize}
+\item Algoritmu apstrāde
+\subitem atpazīšana
+\subitem salīdzināšana
+\subitem sašķelšana
+\item Pieprasījuma identificēšana
+\item Koda daļu savstarpējā salikšana
+\item Pirmkoda ģenerēšana
+\end{itemize}
+
+\subsection{Algoritmu apstrāde}
+Minimālais mērķis ir radīt tādu programmatūru, kura būtu spējīga atpazīt kārtošanas algoritmus. Papildus piedāvāt iespēju salīdzināt divu dažādu risinājumu sakritību, kā veiktspējas un pareizības, tā arī veidotā pirmkoda veidā. Iespēju robežas radīt spēju sašķelt algoritmus būvblokos[TODO Citation] un uzglabāt to speciālā kartotēkā. 
+
+\subsubsection{Atpazīšanas problēmas}
+Lielākā sarežģītība šai aspektā ir saistīta ar ievaddatu dažādību. Piemēram pēc pašu datu veidu - tā varētu būt gan izpildāma datne, gan pirmkoda teksts. Pirmkodu būtu iespējams automātiski kompilēt, tas ļautu izmantot vienotu saskarni neironu tīklam. 
+
+Protams pirms izmantot neironu tīklu, tas būtu arī jāiemāca atšķirt algoritmus, attiecīgi jāveic apmācīšanas process.
+
+\subsubsection{Algoritmu salīdzināšana}
+Salīdzināšana var notikt divos veidos - pirmkoda un darbības rezultātu līmeņos. Katram no šiem līmeņiem ir pilnīgi savādāka pieeja. Vienkāršāk, protams, ir salīdzināt rezultātus. Attiecīgi, ja vairāk ir praktiski tai pašā līmenī - darbības laiks, izmantotā atmiņa, iegūtie testu rezultāti no neironu tīkla un gala rezultāts.
+
+Salīdzināšana pēc pirmkoda ir sarežģītāka, jo sākumā jāpārveido pirmkods uz "normālformu". Tas tiktu darīts ar speciālu kārtošanas algoritmu. Attiecīgi kārtojot pirmkoda sastāvdaļas. Līdzīgi, kā to dara formatēšanas rīki modernajās izstrādes vidēs. Taču papildus vajadzēs atpazīt mainīgo lomas un attiecīgi tos pārdēvēt. Iespējams šeit būtu daudz vienkāršāk strādāt ar asamlera kodu, kur mainīgie tiktu jau pārveidoti par reģistriem metodēs.
+
+Protams var izmantot daudz vienkāršākus paņēmienus, piemēram plaši pazīstamais diff, balstoties uz atšķirību veidu pirmkodā varētu ļoti vienkārši identificēt tiešos plaģiāta gadījumus, kur pirmkods sakrīt rindiņa pret rindiņu, ar pāris pārsauktajiem mainīgajiem.
+
+\subsubsection{Algoritmu sašķelšana}
+Šeit ir domāts tas process, kad tiek apstrādāts pirmkods un tiek sadalīts par būvblokiem. Tieši šeit sākumā notiktu koda formatēšana. Faktiski salīdzināšana varētu notikt tikai pēc šīs sašķelšanas procedūras.
+
+Tādā gadījumā varētu salīdzināt nevis tieši pirmkodu, bet gan identificēto bloku virkni. Tas aizņemtu mazāk resursu, kā arī būtu precīzāks salīdzinājums, jo tiktu abstraktēti mainīgo nosaukumi, konkrētā secība (tiktu izmantota normālforma).
+
+\subsection{Pieprasījuma atpazīšana}
+Lietotājam tiek dota iespēja izvēlēties kādu algoritmu viņš vēlas iegūt. Šis mērķis ir vairāk papildinājums eksistējošiem. Šāda mērķa realizēšana dotu jēgu tiem datiem, kuri tiktu savākti iepriekšējo mērķu strādājošas realizācijas rezultātā. 
+
+Pie vienkāršotas šī mērķa realizācijas, proti, dot iespēju izvēlēties ar ķeksi rūtiņā, kuru algoritmu lietotājs vēlas, problēmas netiek paredzētas. Taču ja šo mērķi izpleš - dod lietotājam aprakstīt problēmu ar tekstu un novērtēt iegūto rezultātu, kā arī ar plašāku algoritmu kopu un salikumu. Šis uzreiz kļūtu par ļoti nopietnu un lielu sfēru pie kuras vajadzētu pamatīgi strādāt.
+
+Pagaidām tiks izmantots vienkāršots variants, taču izaugsmes iespēja ir viegli pamanāma. Šis ir viens no potenciāliem attīstības virzieniem - lietotāja brīvā teksta algoritmu paraugu pieprasījumi.
+
+\subsection{Pirmkoda ģenerēšana}
+Šis mērķis līdzīgi kā iepriekšējais ir pietiekoši vienkāršs strādājot ar mazu algoritmu kopu un pieprasījumu iespēju. Taču kā izaug lietotāja iespējas, tā aug šī uzdevuma sarežģītība.
+
+Viens no smagākiem gadījumiem ir - ko darīt, ja nav laba algoritma piemēra kartotēkā. Šādos gadījumos lietotājs joprojām sagaida rezultātu. No šīs problēmas izriet nākošais mērķis ar jau saviem sarežģījumiem.
+
+\subsection{Koda daļu savstarpējā salikšana}
+Ja nav pieejams kāda algoritma gatavs variants, taču ir vairāki bloki, no kuriem varētu mēģināt veidot rezultātu, kā arī neironu tīkla rezultāts, kuru vajadzētu iegūt šāda veida algoritmam. Risinājums vismaz mēģinās atrast kādu zināmo bloku permutāciju, kurš dos pēc iespējas tuvāku rezultātu vajadzīgajam. 
+
+Taču šeit rodas problēma - ir jāatrod veids, kādā veidā dažādus blokus varētu savstarpēji savienot. Tomēr tas nav vienkāršs uzdevums. Autora prāt arī ir vissarežģītākais visā darbā.
+
+Šeit jāsaprot, ka mainīgo definēšana var būt vienā blokā, bet to izmantošana citā, kas rada dažādas nepieciešamas saistības starp tiem. Tas rada specifiskus likumus, kurus ir jāapkopo un jāapraksta.
+
+\section{Robežu definīcija}
+Robežu definēšana ļauj darbam būt fokusētam uz konkrētu grupu. Tas ļauj atrast labākos risinājumus un dot skaidrākas atbildes. Visu uzreiz izdarīt nesanāks! Robežas tiek noteiktas vairākos veidos - apskatāmo algoritmu kopa, pieņemamās valodas, lietotāja pirmkoda pieprasīšanas veidi.
+\subsection{Apskatāmie algoritmi}
+Tā kā algoritmu kopa ir ļoti plaša. Tad, protams, lai atvieglotu uzdevumu tiek noteiktas konkrētas robežas ar kāda tipa algoritmiem un ieejas datiem tiks strādāt. Dotajā gadījumā tiks izvēlēta ļoti klasiska algoritmu kopa ar pietiekoši lielām līdzībām un, tai pašā laikā, dažādībām. Tie būs kārtošanas algoritmi. Tālāk seko atbalstīto kārtošanas algoritmu saraksts:
+\begin{itemize}
+\item Bubble sort
+\item Quicksort
+\item Mergesort
+\item TODO Add more
+\end{itemize}
+\subsection{Saprotamās programmēšanas valodas}
+Katrai programmēšanas valodai ir savas nianses, specifikas un, galu galā, sintakse. Atbalsts katrai programmēšanas valodai pieprasītu milzīgus darba ieguldījumu, bet tas nesniegtu lielu atdevi. Praktiski tas ir tulkošanas darbs, kurš nav tik svarīgs dotajā brīdī, taču tas tiek laicīgi paredzēts, tiek atstāta vieta izaugsmei šai sfērā.
+
+Atbalstītās valodas būs ļoti vienkārša un ar plašām iespējām - C.
+
+\subsection{Lietotāja ievaddati}
+Ir paredzēti divi ievaddatu veidi - jaunas programmatūras piedāvājums pārbaudei un pirmkoda parauga pieprasīšana. Katram no šiem pieprasījumiem ir uzlikti savi limiti.
+
+\subsubsection{Programmas pārbaude}
+Testējamai programmai būtu jābūt spējīgai uzņem virkni parametru, pārsvarā tie būtu norādījumi no kuras datnes uzņemt ieejas datus un kurā vietā izvadīt rezultātus. 
+
+Bez šādas vienošanās nebūtu iespējams vispār pārbaudīt dažādu autoru risinājumus, jo katrs to darīt savādāk. Vienota saskarne dotajā gadījumā ir obligāta, savādāk visai idejai nav iespējas eksistēt. 
+
+\subsubsection{Pirmkoda pieprasīšanas veidi}
+Kā jau minēts - patvaļīga lietotāja teksta analīze ir ļoti sarežģīts pasākums. Teksta analīzei tiek veltīti veseli zinātniskie pētījumi. Programmatūras attīstībā, tos varētu pielietot un izmantot. 
+
+Patlaban lietotāja ievade ir limitēta diezgan nopietni - ir iespējams pieprasīt tikai vienu konkrētu algoritmu. Tas tiek darīts ar ļoti vienkāršotu veidu - vēlamā algoritma atzīmēšana sarakstā. 

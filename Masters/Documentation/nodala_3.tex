@@ -1,2 +1,37 @@
-\section{Apakšnodaļa}
-\subsection{pakāpes nodaļa}
+[TODO this is a copy paste from previous work, must be rewritten]
+Īsumā ir ideja izveidot programmatūru, kura būtu spējīga uzģenerēt pirmkodu no lietotāja ievadītās informācijas. Taču, lai to nodrošinātu visas šīs darbības arī ir jāizveido palīg sistēmas. 
+
+\section{Risinājuma virspusīgs apraksts}
+Programmatūra sastāvēs no grafiskās saskares; atpazīšanas moduļa, kurš būs bāzēts uz neirona tīkliem un vienībtestiem. Svaru pielāgošana varētu notikt arī balstoties uz cilvēka ievadi.
+
+Sarežģītība darbā iziet no atsevišķu detaļu implementēšanas, piemēram, pats neirona tīkls, vai arī pirmkoda automātiskais formatētās, kurš pārveidotu ievadīto kodu vajadzīgā formā. Kaut gan šim nolūkam varētu izmantot jau eksistējošus rīkus. Tādu rīku izmantošana nenovērš materiāla apstrādi, jo tas tomēr ir jāsaglabā un jāsalīdzina ar jau eksistējošiem
+
+\section{Algoritma atpazīšana}
+Ievadītā algoritma atpazīšanai tiks izmantots neirona tīkls. Aktivizēto neironi izveidos karti, kuri raksturos katru atsevišķu risinājumu. Tādā veidā dažādu algoritmu atpazīšana būtu veicama ar tīkla izplešanu.
+
+\subsection{Neironu tīkls un vienībtestēšana}
+Ir doma izmantot kā konkrēta neirona testa funkcijas varētu strādāt klasiskie vienīb-testi. Plaši izmantotiem algoritmiem šādas testu grupas var diezgan vienkārši atrast. Šāds paņēmiens ļautu nākotnē vienkārši izvērst pārsedzamo algoritmu daudzumu.
+
+Protams šāda veida testēšana pieprasa, lai svarīgas funkcijas tiktu nosauktas vajadzīgos vārdos. Taču ja tiktu izmantota automātiskā formatēšana, kura varētu nosaukt visas pieejamās metodes tādā formā kā P1, P2, ... Pn.
+
+Vēlāk katru metodi vienkārši padot neironu tīklam. Šo procesu vēl varētu optimizēt tādā veidā, ka, ja Pn tiek izsaukts iekš Pm, tad padot neironu tīklam tikai Pm.
+
+\subsection{Lietotāja atgriezeniskā saite}
+Ģenerētā pirmkoda pareizību, galvenais testētājs ir lietotājs, kurš pieprasa sev nepieciešamo algoritmu. Dotajā gadījumā ģenerēto algoritmu arī vajadzētu izvest cauri neironu tīklam un salīdzināt lietotāja atbildi attiecība pret to, ko pateica pati programmatūra.
+
+Tāds gājiens ļautu dinamiski pielabot svarus, kas laika gaitā uzlabotu kopēju izdoto rezultātu validitāti un atbilstību cilvēka pieprasītajiem algoritmiem.
+
+\section{Pirmkoda un programmatūras ģenerēšana}
+Pirmkoda ģenerēšana var notikt tikai balstoties uz jau ievāktiem datiem. Piemēram, kārtošanas algoritmu varētu piedāvāt kā izvades opciju saskarnē tikai pēc tam, kad tāds algoritms tika saglabāts.
+
+Pati ģenerēšana sastāvētu no pieejamo algoritmu vai citu bloku „komponēšanas” kopā. Kā risinājumu datu pārveidošanai, lai datus varētu padot no vienas daļas uz citu ir jāiegulda lielāks laiks.
+
+Pagaidām no piedāvātiem risinājumiem ir divi: 1) veidot tiešās pārveidošanas metodes, taču šis variants norobežo iespējamo risinājuma izplešamību; 2) Izveidot pārejas datu struktūru, uz kuru varētu pārveidot jebko un no tās ārā dabūt jebko, tas gan izveido risku, jo datu pārveidošana kļūst mazāk paredzama; 3) izveidot likumus, kuri aprakstītu datu transformācijas no tipa uz tipu, taču datu tipu skaits un veids būtu limitēts.
+
+Šie paņēmieni un viņu efektivitāte tiks izvērtēta reālas implementācijas laikā. Labāk būtu izveidot tādu paņēmienu, kurš prasīt pēc iespējams mazāku papildus darbu uzturēšanā, ja būs nepieciešamība izvērst risinājumu.
+
+Teorētiski šī punkta implemntēšana arī ļautu pašam neironu tīklam attīstīties un uzlaboties, kas ļautu izveidot datu akumulējošu programmatūru. Taču tā ir tikai teorija, šis darbs ir tikai viens solis tuvāk šāda risinājuma virzienā.
+
+Jāpiemin, ka veidnes no kurām tiek veidots pats pirmkods ir abstrakti dati, nevis jau gatavs algoritms. Aprakstot algoritma darbību programmai ir iespēja izveidot „tulkošanas” moduļus uz dažādām valodām. Rezultātā būtu iespējams pievienot vairākus šādus moduļus un atkarībā no to pieejamības ģenerēt pirmkodu attiecīgās valodās.
+
+Protams, dažas valodas neatbalsta dažas funkcionalitātes, citas ir labāk pielāgotas konkrētām darbībām, tomēr lielāko daļu algoritmu būtu iespējams realizēt gandrīz jebkurā klasiskā programmēšanas valodā.
