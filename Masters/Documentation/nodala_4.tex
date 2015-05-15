@@ -1,13 +1,103 @@
-Šī nodaļa ir veltīta tam, lai sniegtu priekšstatu algoritmiskiem risinājumiem, kuri tika izveidoti, lai risinātu 1. nodaļā izvērstās problēmas. Kā arī tiek aprakstīta kopēja programmas struktūra un dažādu moduļu nozīme un mērķi.
-\section{Algoritmu atpazīšana}
+Šī nodaļa ir veltīta tam, lai sniegtu priekšstatu par algoritmiskiem risinājumiem, kuri tika izveidoti, kamēr tika  risinātas 1. nodaļā izvērstās problēmas. Otrā nodaļas daļā tiek aprakstīta programmas tehniskā puse, tai skaitā augstāka līmeņa projektējums, procesi, datu plūsmas, kā arī dažādu moduļu nozīme un mērķi.
 
-\subsection{Saskarne}
+\section{Algoritmu apstrāde}
+Kā minēts 1. nodaļā, tad viena no problēmām ir kā apstrādāt ievadītos algoritmus, lai iegūtu vēlamos rezultātus. Apakšdaļas šai, dotajā brīdī, diezgan plašai problēmai ir: "Kā nesajaukt divas vienādas realizācijas?"; "Kā atpazīt kurš no algoritmiem šis ir?"; "Cik pareizs ir piedāvātā algoritma pirmkods?". 
+
+\subsection{Datu ievads}
+Pagaidām vienīgais datu ievades atbalstītais veids ir tīrs pirmkods. Tas tiek secīgi apstrādāts ar dažādām metodēm, kuras palīdz atbildēt uz augstāk minētiem jautājumiem. Pati ievade notiek divos viedos - kā arguments, kad programma uzsāk darbību konsoles režīmā, vai, grafiskā variantā, izmantojot piedāvāto saskarni.
+
+Vienā laikā no viena lietotāja (viena savienojuma[TODO required?]), var būt apstrādāts tikai viens algoritms. Tam arī jāatbilst vairākiem kritērijiem - obligāti ir jābūt iespējai saņemt datus kā argumentus, vai arī nolasīt to no datnes, kura atrodas tai pašā mapē ar nosaukumu "ieeja.txt". Pie reizes jāpiemin, ka visiem izejas datiem vajadzētu nonākt tai pašā mapē datnē "izeja-<ID>.txt", kur ID tiks padots kopā ar ieejas datiem. Bez šādas vienošanās nebūtu viennozīmīgi pārbaudīt piedāvāto pirmkodu. Pieņemtais pirmkods ir C\# valodā.
+
+Protams nebūtu jēdzīgi veikt jebkādas darbības ar ievadītiem datiem, ja dotais pirmkods pat nekompilējas. Tāpēc pirmais solis, kurš tiek veikts ir tieši kompilēšanas mēģinājums. Ja tiek atrastas kļūdas, tās tiek paziņotas lietotājam, ja to nav nākošie procesa soļi var būt izpildīti.
+
+\subsection{Pirmkoda sadalīšana}
+Lai vēlāk varētu veikt pirmkoda analīzi ar neironu tīklu, kā arī, lai palielinātu ievākto datu apjomu, pirmkods tiek apstrādāts ar formatēšanas algoritmu. Pēc tam visa pirmkoda secība tiek saglabāta speciālā formā. Tas izveido savdabīgu pirksta nospiedumu konkrētajam pirmkodam.
+
+\subsubsection{Formatēšanas algoritms}
+Tā kā precīzākai salīdzināšanai un atpazīšanai būtu daudz parocīgāk, ja pārbaudāmais pirmkods tiktu "standartizēts", jeb formatēts vienā veidā, tika izdomāts specifisks kārtošanas algoritms. Šis algoritms tiek rekursīvi atkārtots uz katru apgabalu (scope).
+
+Pašā algoritmā tiek veikti šie soļi (visas darbības tiek veiktas dotā apgabala robežās):
+\begin{enumerate}
+\item Bāzes mainīgo kārtošana(int, char, long, utt):
+\subitem Tie tiek pārvietoti uz apgabala sākumu;
+\subitem Tie tiek sakārtoti pēc to izmantošanas biežuma;
+\subitem Visa apgabala robežās tie tiek pārdēvēti uz standarta vārdu.
+\item Darbības ar struktūrām:
+\subitem Pārvietotas uz apgabala sākumu;
+\subitem Sakārtotas pēc to izmantošanas biežuma;
+\subitem Pārkārtotas tā, lai deklarēšana būtu pirmā pieminēšanas reizes;
+\subitem Pārdēvēti uz standarta vārdu;
+\item Darbības ar klasēm:
+\subitem Pārvietotas uz apgabala sākumu;
+\subitem Sakārtotas pēc to izmantošanas biežuma;
+\subitem Pārkārtotas tā, lai deklarēšana būtu pirmā pieminēšanas reizes;
+\subitem Pārdēvēti uz standarta vārdu;
+\item Visi apgabalu veidojumi(vadības un ciklu kontroles, struktūras, klases un citi)
+\subitem Izpildīti visi soļi pēc kārtas uz katru no iekšējiem apgabaliem.
+\end{enumerate}
+
+\subsubsection{Koda "pirksta nospiedums"}
+Šis nospiedums vēlāk tiek izmantos gan pirmkoda realizētā algoritma atpazīšanai, gan salīdzināšanai ar citiem darbiem, kuri varētu būt līdzīgi. Tā kā mainīgo vērtības netiek ņemtas vērā, tad tas arī neietekmē salīdzināšanas procesu. 
+Nospiedumā ietilpst sekojošas lietas:
+\begin{enumerate}
+\item mainīgo skaits
+\item masīvu, sarakstu, un citu līdzīgu veidojumu skaits
+\item vadības elementu skaits
+\item ciklu skaits
+\item darbību skaits
+\item visu elementu secība
+\end{enumerate}
+
+Elementu secība arī tiek apzīmēta specifiskā veidā. Faktiski tiek izveidota rinda ar datubāzes ID numuru, kā arī, ja elements izmanto kādu no sev augstākstāvoša apgabalā deklarētu elementu, tad uz to tiek izveidota saite, kura arī ir pievienota pie tā paša ID
+
+[TODO] Īsts piemērs! 1;2;3;4;5;43{32;12{12}};
+
+Kā var redzēt šī ir vienkārša datu saspiešana, bet bez informācijas zaudējumiem un joprojām pieļauj precīzu datu salīdzināšanu. Tai pašā laikā mainīgo un citu veidojumu vārdi neietekmē šo procesu.
+
+Kad katrs pirmkoda apgabals ir identificēts un tas tiek aprakstīts ar augstāk minēto metodi, to cenšas sameklēt datu bāzē, meklēšana notiek, pirmkārt pēc elementu secības lauka. Ja tāda elementa nav, tad dotais tiks saglabāts datu bāzē.
+
+Pēc šīs procedūras seko neirona tīkla pārbaudes, lai atpazītu kurš no algoritmiem šis ir.
 
 \subsection{Neironu tīkls}
+Tā kā apskatāmo algoritmu kopa pagaidām nav pietiekoši liela, tad arī neironu tīkls nebūs diez ko plašs. Taču viņš tiek konstruēts tādā veidā, lai to varētu ļoti vienkārši paplašināt tai brīdī, kad parādās jauni algoritmi.
+Darba rakstīšanas brīdī tiek izmantots neironu tīkls, kurš var būt sadalīts 3 daļās:
+\begin{itemize}
+\item sarežģītība un atmiņas patēriņš
+\item satura analīze
+\item vienību testi 
+\end{itemize}
+
+Katrai no daļām ir savs mērķis. Taču visas šīs daļas kopā veido vienu rezultātu, kurš vēlāk tiks attēlots uz grafika. Dažādi algoritmi un realizācijas grupēsies dažādos reģionos. Pilnu neironu tīkla izklājumu grafa veidā var redzēt [TODO pievienot pielikuma referenci]
+
+\subsubsection{Sarežģītība un atmiņas patēriņš}
+Pirmā daļa palīdz noskaidrot algoritma sarežģītību un atmiņas patēriņu. Šīs darbības palīdzēs noteikt tā efektivitāti, vai norādīt uz trūkumiem. Viena no lielākām problēmām šeit ir sarežģītības noteikšana. Pagaidām nav atklāts neviens algoritms, kurš to varētu viennozīmīgi veikt katram pirmkodam, kurš var būt uzrakstīts. Šis secinājums izriet Apstāšanās problēmas[TODO]. Taču, pat ja nav viennozīmīga algoritma kā iegūt tiešos rezultātus ir vairākas, kuras mēģina apiet šo faktu ar dažādiem maziem trikiem, kuri dažreiz izraisa programmas nekontrolētu rīcību (tās vai nu pārstāj strādāt, vai iesprūst bezgalīgā ciklā). Saistībā ar šo problēmu tiek vairāk stāstīts darbā "Measuring Emperical Computational Complexity", kā arī tā autori piedāvā savu programmatūru, kura spēj aptuveni noteikt algoritmu sarežģītību.
+
+\subsubsection{Algoritma satura analīze}
+Otrā daļas mērķis ir noteikt kas par algoritmu ir dotais. Tas tiek darīts ar skaitliskas vērtības iegūšanu izmantojot funkciju, kuras ieejas parametri ir dažādu elementu skaits konkrētā algoritmā. Dotajā gadījumā tiek izmantotas tikai kategorijas, specifiskie ID netiek ņemti vērā. Mainīgo skaitam svars ir zemāks nekā masīvu vai sarakstu skaitam. Pēc tam seko vadības struktūras, tālāk seko cikli un, visbeidzot, metodes un funkcijas.[TODO - svari dotiem mainīgiem]. Balstoties uz konkrēta elementa tipa skaitu tīklā tiek izlemts nākošais solis pavirzot galīgo risinājumu tuvāk konkrēto gadījumu kādam no gala rezultātiem. Pēdējais apakšsolis dotajā procedūrā ir pārbaude uz attālumu no jau eksistējošām šī algoritma realizācijām. Attālums tiek izteikts kā atšķirību simbolu skaits reducētā virknē.
+
+\subsubsection{Pārbaude ar vienību testiem}
+Trešā daļa palīdz pārbaudīt algoritma sekmīgu realizāciju - attiecīgi vai ir ievsušās kādas kļūdas. Tādā veidā varētu sniegt papildus informāciju lietotājam par to, kas viņa realizācijā nav korekts. Kaut arī iepriekšējā daļā tas arī var būt atklāts, taču tas nav viennozīmīgi - noteikt nevar izvērst secinājumus tikai pēc, piemēram, sakritības ar iepriekšējo darbu. Ja tiek veikta kāda sarežģītāka algoritma realizācija, tad vienīb-testēšanas rezultāti ļoti labi varētu atklāt kļūdas. Protams, šie vienību testi tiktu speciāli rakstīti, lai atrastu tipiskas nepilnības konkrētos algoritmos.
+
+\subsubsection{Iegūto datu apstrāde}
+Neironu tīkla būtība ir izveidot funkciju, kura ar vieniem un tiem pašiem ievaddatiem dos to pašu rezultātu, dažādi ievaddati ari var dot līdzīgus vai tādus pašus rezultātus. Attiecīgi: \begin{math}f(x_1, x_2, ..., x_n) = f(z_1, z_2, ..., z_n)\end{math}
+Taču otrs šīs funkcijas mērķis ir diezgan uzskatāmi atdalīt ieejas datus, ja tie ir no citas grupas. Līdz ar to liela atbildība ir izveidot tādus neironus un nokalibrēt to svarus tā, lai pēc ieejas datiem varētu viennozīmīgi atšķirt kurai no datu grupām šis konkrētais gadījums pieder.
+
+Izvēloties pareizus svarus iegūtais izejas rezultāts, cerams, viennozīmīgi apzīmē kādu no algoritmiem. Tā kā visi viņi nebūs vienādi, tad veidosies neliels troksnis. Taču lielākoties viena tipa algoritmi grupēsies vienā reģionā.
+
+[TODO pārbaudīt ka ir 100\% patiess]Klasiski mašīnmācīšanās rezultātus uzrāda ar 2 vai 3 dimensiju grafikiem. Dotajā gadījumā izmantot kādu konkrētu grafiku ir sarežģīti, jo funkcijas uzņem diezgan lielu ieejas mainīgo kopu. Uz papīra attēlot 7 dimensiju grafiku ir diezgan sarežģīti. Taču uzskatāmības pēc rezultāti būtu jāattēlo grafiski. Līdz ar to tika izvēlēts variants, kur ieejas dati ir reducēti uz trim skaitļiem, katrs tiek veidots no vienas neironu tīkla daļas. Dziļāks izskaidrojums 3 dimensiju plaknē seko nākošā apakšnodaļā. 
 
 \subsection{Rezultātu attēlojums}
+Kā jau minēts, neirona tīkla apstrādes rezultātā tiks iegūts rezultāts, kurš sastāvēs no trim skaitļiem. Katrs skaitlis atbilst rezultātam, ko sniedz attiecīga neirona tīkla daļa. Pirmais skaitlis - X, ko dod pirmā neironu tīkla daļa, raksturo algoritma efektivitāti. Otrais skaitlis - Y, kurš attiecīgi ir otrās neirona tīkla daļas rezultāts, izsaka pirmkoda saturu, šo nevar tieši projicēt uz veiktspēju, taču mazāks darbību skaits parasti nozīmē arī ātrāku izpildi. Trešais skaitlis -Z, kurš atbilst neirona tīkla pēdējai daļai, attēlo realizētā algoritma pareizību, jo [TODO] lielāks skaitlis, jo pareizāka realizācija izdevusies.
 
-\subsection{Pirmkoda sašķelšana}
+[TODO add pics or it didnt happen]
+
+Katram no šiem skaitļiem X,Y,Z tiek izvietots uz attiecīgās ass koordināšu plaknē. Izveidojas punkts telpā, kurš apzīmē konkrēto algoritmu. Telpā veidosies punktu mākoņi, katrs šāds mākonis atbilstīs dažādu algoritmu realizācijām. Katrs punkts arī tiktu iekrāsots balstoties uz lietotāja atgriezenisko saiti. 
+
+Pirms punkts tiks pilnvērtīgi pievienots telpai, lietotājam tiek jautāts - vai iegūtais rezultāts ir patiess. Ja tas nav patiess, lietotājam ir jāievada īstais algoritma tips. Tā kā punkti ir iekrāsoti atbilstoši saistīto algoritmu realizācijām, tad varēs pamanīt, kurā brīdī tika pieļauta kļūda (no lietotāja puses, vai programmas). 
+
+[TODO add pics or it didnt happen]
+
+Ja tika pieļautas kļūdas realizēšanā, tad šī infomācija arī tiktu parādīta lietotājam, dodot viņam izvēli uzlabot savu piedāvāto pirmkodu, vai sākt no jauna. Protams, eksistē iespēja arī apskatīt citus punktus un ar viņiem saistītos datus.
 
 \section{Pirmkoda ģenerēšana}
 
